@@ -9,12 +9,10 @@ class DefaultController extends AppController {
         $this->render('map');
     }
 
-    public function projects()
-    {
-        $this->render('projects');
-    }
+
     public function map()
     {
         $this->render('map');
     }
+
 }
