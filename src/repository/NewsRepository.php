@@ -22,6 +22,7 @@ class NewsRepository extends Repository
         return new News(
             $news['title'],
             $news['description'],
+            $news['id_author'],
             $news['image']
         );
     }
@@ -30,16 +31,15 @@ class NewsRepository extends Repository
     {
         $date = new DateTime();
         $stmt = $this->database->connect()->prepare('
-        INSERT INTO news (title, description, created_at, id_assigned_by, image)
+        INSERT INTO news (title, description, created_at, id_author, image)
         values (?,?,?,?,?)
     ');
 
-        $assignedById = 2; // TODO pobrac z sesji, kto to dodaje
         $stmt->execute([
             $news->getTitle(),
             $news->getDescription(),
             $date->format('Y-m-d'),
-            $assignedById,
+            $news->getAuthor(),
             $news->getImage()
         ]);
     }
@@ -52,14 +52,15 @@ class NewsRepository extends Repository
         SELECT * FROM news
         ');
 
-        $stmt ->execute();
+        $stmt->execute();
 
         $newsAll = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-        foreach ($newsAll as $news){
+        foreach ($newsAll as $news) {
             $result[] = new News(
                 $news['title'],
                 $news['description'],
+                $news['id_author'],
                 $news['image']
             );
         }
@@ -68,7 +69,7 @@ class NewsRepository extends Repository
 
     public function getPostByTitle(string $searchString)
     {
-        $searchString = '%'.strtolower($searchString).'%';
+        $searchString = '%' . strtolower($searchString) . '%';
 
         $stmt = $this->database->connect()->prepare('
         SELECT * FROM news WHERE lower(title) like :search OR lower(description) like :search

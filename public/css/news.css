@@ -6,14 +6,14 @@ section {
     overflow: auto;
 }
 
-.news>div>img {
+.news > div > img {
     height: 50%;
     width: 100%;
     object-fit: cover;
     border-radius: 1em 1em 0 0;
 }
 
-.news>div>div {
+.news > div > div {
     height: 50%;
     margin: 1em;
     color: #2699FB;
@@ -22,7 +22,7 @@ section {
     justify-content: space-around;
 }
 
-.news>div {
+.news > div {
     border: 1px solid gray;
     border-radius: 1em 1em 0 0;
     height: 400px;
@@ -37,7 +37,7 @@ section.news-form {
     justify-content: center;
 }
 
-.news-form>form {
+.news-form > form {
     display: flex;
     flex-direction: column;
 }

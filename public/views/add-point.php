@@ -11,8 +11,8 @@
     <?php include("public/views/sidebar.php") ?>
     <main>
         <section class="news-form">
-            <h1>UPLOAD</h1>
-            <form action="addNews" method="POST" ENCTYPE="multipart/form-data">
+            <h1>Add Point</h1>
+            <form action="addNews" method="POST" ENCTYPE="multipart/news-data">
                 <div class="messages">
                     <?php
                     if (isset($messages)) {

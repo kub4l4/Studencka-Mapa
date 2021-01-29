@@ -1,22 +1,20 @@
 <!DOCTYPE html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="public/css/style.css">
+    <?php include("public/views/head.php") ?>
     <script type="text/javascript" src="./public/js/script.js" defer></script>
     <title>REGISTER</title>
 </head>
 
 <body>
 <div class="container">
-    <div class="logo">
-        <img src="public/img/logo.svg">
-    </div>
+    <?php include("public/views/logo.php") ?>
     <div class="login-container">
         <form class="register" action="register" method="POST">
             <div class="messages">
                 <?php
-                if(isset($messages)){
-                    foreach($messages as $message) {
+                if (isset($messages)) {
+                    foreach ($messages as $message) {
                         echo $message;
                     }
                 }

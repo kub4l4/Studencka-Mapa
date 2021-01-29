@@ -11,10 +11,10 @@ class Database
 
     public function __construct()
     {
-        $this -> username = USERNAME;
-        $this -> password = PASSWORD;
-        $this -> host = HOST;
-        $this -> database = DATABASE;
+        $this->username = USERNAME;
+        $this->password = PASSWORD;
+        $this->host = HOST;
+        $this->database = DATABASE;
     }
 
 
@@ -22,16 +22,16 @@ class Database
     {
         try {
             $conn = new PDO(
-              "pgsql:host=$this->host;port=5432;dbname=$this->database",
+                "pgsql:host=$this->host;port=5432;dbname=$this->database",
                 $this->username,
                 $this->password,
                 ["sslmode" => "prefer"]
             );
 
-            $conn ->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $conn;
-        }catch(PDOException $e){
-            die ("connection failed:".$e->getMessage());
+        } catch (PDOException $e) {
+            die ("connection failed:" . $e->getMessage());
         }
 
     }

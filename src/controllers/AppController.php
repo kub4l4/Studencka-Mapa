@@ -21,21 +21,6 @@ class AppController
         return $this->request === 'POST';
     }
 
-    protected function render(string $template = null, array $variables = [])
-    {
-        $templatePath = 'public/views/' . $template . '.php';
-        $output = 'File not found';
-
-        if (file_exists($templatePath)) {
-            extract($variables);
-
-            ob_start();
-            include $templatePath;
-            $output = ob_get_clean();
-        }
-        print $output;
-    }
-
     protected function setCookie($id, $token)
     {
         $userRepository = new UserRepository();
@@ -57,6 +42,18 @@ class AppController
         return $userRepository->unsetCookie($token);
     }
 
+    protected function cookieCheck(): int
+    {
+        $userID = $this->getCurrentUserID();
+        if ($userID != 0) {
+            return $userID;
+        }
+
+        $this->render('login');
+        return 0;
+
+    }
+
     protected function getCurrentUserID(): int
     {
         $userRepository = new UserRepository();
@@ -68,19 +65,23 @@ class AppController
         return 0;
     }
 
-    protected function cookieCheck(): int
+    protected function render(string $template = null, array $variables = [])
     {
-        $userID=$this->getCurrentUserID();
-        if($userID!=0){
-            return $userID;
+        $templatePath = 'public/views/' . $template . '.php';
+        $output = 'File not found';
+
+        if (file_exists($templatePath)) {
+            extract($variables);
+
+            ob_start();
+            include $templatePath;
+            $output = ob_get_clean();
         }
-
-        $this->render('login');
-        return 0;
-
+        print $output;
     }
 
-    protected function isLogin(){
+    protected function getCurrentLogUserID()
+    {
         $userRepository = new UserRepository();
 
         $currentUserID = 0;
@@ -89,5 +90,6 @@ class AppController
         }
         return $currentUserID;
     }
+
 
 }

@@ -25,19 +25,17 @@ class NewsController extends AppController
 
     public function news()
     {
-        if ($this->isLogin()== 0) {
-            $this->render('map');
-        }
-
         $news = $this->newsRepository->getAllNews();
         $this->render('news', ['news' => $news]);
     }
 
     public function addNews()
     {
-        if ($this->isLogin()== 0) {
-            $this->render('map');
+        //czy ktos jest zalogowny
+        if ($this->getCurrentLogUserID() == 0) {
+            return $this->render('no-access', ['messages' => ['Please login!']]);
         }
+
         if ($this->isPost() && is_uploaded_file($_FILES['file']['tmp_name']) && $this->validate($_FILES['file'])) {
             move_uploaded_file(
                 $_FILES['file']['tmp_name'],
@@ -45,7 +43,7 @@ class NewsController extends AppController
             );
 
             // TODO create new project object and save it in database
-            $news = new News($_POST['title'], $_POST['description'], $_FILES['file']['name']);
+            $news = new News($_POST['title'], $_POST['description'], $this->getCurrentLogUserID(), $_FILES['file']['name']);
             $this->newsRepository->addNews($news);
 
 

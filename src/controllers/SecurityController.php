@@ -1,11 +1,12 @@
 <?php
 
 require_once 'AppController.php';
-require_once __DIR__ .'/../models/User.php';
-require_once __DIR__.'/../repository/UserRepository.php';
+require_once __DIR__ . '/../models/User.php';
+require_once __DIR__ . '/../repository/UserRepository.php';
 
 
-class SecurityController extends AppController {
+class SecurityController extends AppController
+{
 
     private $userRepository;
 
@@ -17,50 +18,51 @@ class SecurityController extends AppController {
 
     public function login()
     {
-        if ($this->getCurrentUserID() == 0) {
-            $userRepository = new UserRepository();
-
-            if (!$this->isPost()) {
-                return $this->render('login');
-            }
-
-            $email = $_POST['email'];
-            $password = md5($_POST['password']);
-            $user = $this->userRepository->getUser($email);
-
-            if (!$user) {
-                return $this->render('login', ['messages' => ['User not exist!']]);
-            }
-
-            if ($user->getEmail() !== $email) {
-                return $this->render('login', ['messages' => ['User with this email not exist!']]);
-            }
-
-            if ($user->getPassword() !== $password) {
-                return $this->render('login', ['messages' => ['Wrong password!']]);
-            }
-
-            if ($user->getRole() !== '2') {
-                return $this->render('login', ['messages' => ['Bad privileges!']]);
-            }
-
-            $this->setCookie($user->getId(), uniqid());
+        if ($this->getCurrentUserID() != 0) {
+            $url = "http://$_SERVER[HTTP_HOST]";
+            return header("Location: {$url}/map");
         }
 
+        $userRepository = new UserRepository();
+
+        if (!$this->isPost()) {
+            return $this->render('login');
+        }
+
+        $email = $_POST['email'];
+        $password = md5($_POST['password']);
+        $user = $this->userRepository->getUser($email);
+
+        if (!$user) {
+            return $this->render('login', ['messages' => ['User not exist!']]);
+        }
+
+        if ($user->getEmail() !== $email) {
+            return $this->render('login', ['messages' => ['User with this email not exist!']]);
+        }
+
+        if ($user->getPassword() !== $password) {
+            return $this->render('login', ['messages' => ['Wrong password!']]);
+        }
+
+
+        $this->setCookie($user->getId(), uniqid());
+
+
         $url = "http://$_SERVER[HTTP_HOST]";
-        header("Location: {$url}/news");
+        return header("Location: {$url}/map");
     }
 
     public function register()
     {
         if ($this->getCurrentUserID() != 0) {
-
-            return $this->render('map');
-
+            $url = "http://$_SERVER[HTTP_HOST]";
+            return header("Location: {$url}/map");
         }
-            if (!$this->isPost()) {
+        if (!$this->isPost()) {
             return $this->render('register');
         }
+
 
         $email = $_POST['email'];
         $password = $_POST['password'];
@@ -75,7 +77,7 @@ class SecurityController extends AppController {
         }
 
         //TODO try to use better hash function
-        $user = new User($email, md5($password), $name, $surname, $phone, $role);
+        $user = new User(0,$email, md5($password), $name, $surname, $phone, $role);
         $user->setPhone($phone);
 
         $this->userRepository->addUser($user);
@@ -85,8 +87,8 @@ class SecurityController extends AppController {
 
     public function log_out()
     {
-        $currID=$this->getCurrentUserID();
-        if($currID==0){
+        $currID = $this->getCurrentUserID();
+        if ($currID == 0) {
             return $this->render('login', ['messages' => ["You're session expired"]]);
         }
         return $this->render('login', ['messages' => [$this->unsetCookie($_COOKIE['user_token'])]]);

@@ -134,6 +134,18 @@ class UserRepository extends Repository
         }
     }
 
+    public function checkPrivilege(int $userID){
 
+        $stmt = $this->database->connect()->prepare('
+            SELECT id_user_role FROM public.user WHERE id_user = :id 
+        ');
+        $stmt->bindParam(':id ', $userID, PDO::PARAM_STR);
+
+        $stmt->execute();
+
+        $data = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        return $data['id_user_role'];
+    }
 }
 

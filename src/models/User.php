@@ -1,6 +1,7 @@
 <?php
 
-class User {
+class User
+{
     private int $id;
     private $email;
     private $password;
@@ -18,7 +19,8 @@ class User {
         string $surname,
         string $phone,
         string $role
-    ) {
+    )
+    {
         $this->id = $id;
         $this->email = $email;
         $this->password = $password;
