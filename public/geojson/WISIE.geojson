@@ -1,0 +1,15 @@
+{
+"type": "FeatureCollection",
+"name": "Wydział Inżynierii Środowiska i Energetyki",
+"crs": { "type": "name", "properties": { "name": "urn:ogc:def:crs:OGC:1.3:CRS84" } },
+"features": [
+{ "type": "Feature", "properties": { "Name": "Dziekanat WISiE", "description": "Studia Stacjonarne:<br>Budownictwo, I Stopień - pok. 332, 3 piętro<br>Gospodarka Przestrzenna - pok. 328, 3 piętro<br>Inżynieria Środowiska - pok. 329, 3 piętro<br>Studia Niestacjonarne:<br>Inżynieria Środowiska, Budownictwo - pok. 328, 3 piętro", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9440162, 50.0725194, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek WISiE", "description": "Piętro -1: 013<br>Parter: 7, 12, 14<br>Piętro 1: 115, 119, 129, 121, 122<br>PIętro 2: 216, 218, 219, 220<br>Piętro 3: 308, 319, 317, 318<br>Piętro 4: 429, 433, 436", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9439473, 50.0722836, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek ul. Podchorążych", "description": "Piętro I: F115 (Lewe skrzydło budynku)", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9087921, 50.0758994, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek \"Działownia\"", "description": "Lewe skrzydło:<br>Parter - 0\/1<br>Piętro I - 1\/1<br>Prawe Skrzydło:<br>Parter - 0\/9 ", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9399555, 50.0717043, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek \"Houston\"", "description": "Piętro - 1: 016, 018, 032, 036<br>Parter: 1, 19, 14, 26, 27, 32<br>Piętro I: 111, 112, 120, 122, 128 <br>Piętro II: 224,  225, 226", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.94129, 50.0724272, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek CUP (SJO)", "description": "Piętro II: 138<br>Piętro III: 149a, 149b, 150, 151, 152", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9419245, 50.0713526, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek WIiTCh", "description": "Piętro I: 102", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9410019, 50.0714318, 0.0 ] } },
+{ "type": "Feature", "properties": { "Name": "Budynek Instytutu Materiałów i Konstrukcji Budowlanych (L-1)", "description": "Parter: 6<br>Piętro II: 119", "tessellate": -1, "extrude": 0, "visibility": -1 }, "geometry": { "type": "Point", "coordinates": [ 19.9408493, 50.0719617, 0.0 ] } }
+]
+}
