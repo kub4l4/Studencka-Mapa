@@ -34,11 +34,11 @@ function markValidation(element, condition) {
 }
 
 
-//TODO PASSWORD STREAGH
+//TODO PASSWORD STRENGHT
+//TODO EMPTY INPUT
 
-//
-//form.addEventListener("submit", e => {
-//    e.preventDefault();
-//
-//    //TODO check again if form is valid after submitting it
-//});
+form.addEventListener("submit", e => {
+    e.preventDefault();
+
+    //TODO check again if form is valid after submitting it
+});

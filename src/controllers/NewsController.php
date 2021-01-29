@@ -42,7 +42,6 @@ class NewsController extends AppController
                 dirname(__DIR__) . self::UPLOAD_DIRECTORY . $_FILES['file']['name']
             );
 
-            // TODO create new project object and save it in database
             $news = new News($_POST['title'], $_POST['description'], $this->getCurrentLogUserID(), $_FILES['file']['name']);
             $this->newsRepository->addNews($news);
 

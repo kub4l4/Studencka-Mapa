@@ -47,9 +47,10 @@
 
                 <?php foreach ($points as $point): ?>
                 var temp = L.marker(["<?= $point->getSzerokosc(); ?>", "<?= $point->getDlugosc(); ?>"]).addTo(map);
-
+                temp.bindPopup("<b>Jednostka: <?= $point->getJednostka(); ?></b><br><b>Typ: <?= $point->getTyp(); ?></b><br><b><?= $point->getTytul(); ?></b><br><?= $point->getOpis(); ?>")
                 <?php endforeach; ?>
-
+                //TODO change pop to left
+                //TODO created layers
 
                 var budynki = L.geoJSON().addTo(map);
                 $.getJSON("/public/geojson/budynki.geojson", function (data) {
